@@ -1,9 +1,9 @@
 # AspNetCoreBlogSample
 
-# <h1>ASP.NET Core 1.0 RTM Sampel
+# <h1>ASP.NET Core 1.0 Sample
 The first attempt to create ASP.NET Core web application and integrate it with SignalR.
-When a user creates a new post, it publishs to all online site viewer.
-This is just a simpel test to combine SignalR and ASP.NET Core.
+When a user creates a new post, it's published to all online site viewer.
+This is just a simple test to combine SignalR and ASP.NET Core.
 
 
 
