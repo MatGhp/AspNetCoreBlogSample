@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<h2>ASP.NET Core Sample blog with SignalR 2</h2>
+<div class="row">
+    <hr />
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div id="divPost"></div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+@section scripts{
+    <script src="~/Scripts/jquery.signalR-2.2.0.js"></script>
+    <script src="../signalr/hubs"></script>
+    <script>
+
+        $(function () {
+            var post = $.connection.postHub;
+
+            post.client.displayPost = function () {
+                LoadPosts();
+            };
+
+            $.connection.hub.start();
+            LoadPosts();
+        });
+
+        function LoadPosts() {
+            var $divPost = $("#divPost");
+            $.ajax({
+                url: '../api/post',
+                type: 'GET',
+                datatype: 'json',
+                success: function (data) {
+                    if (data.length > 0) {
+                        $divPost.empty();
+                        var rows = [];
+                        for (var i = 0; i < data.length; i++) {
+                            rows.push('<h3>' + data[i].title + '</h3><article>' + data[i].body + '</article><hr />');
+                        }
+                        $divPost.append(rows.join(''));
+                    }
+                }
+            });
+        }
+    </script>
+}
